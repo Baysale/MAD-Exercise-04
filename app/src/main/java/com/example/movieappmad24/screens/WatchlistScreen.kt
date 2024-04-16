@@ -10,6 +10,7 @@ import com.example.movieappmad24.viewmodels.MoviesViewModel
 import com.example.movieappmad24.widgets.MovieList
 import com.example.movieappmad24.widgets.SimpleBottomAppBar
 import com.example.movieappmad24.widgets.SimpleTopAppBar
+import com.example.movieappmad24.navigation.Screen
 
 @Composable
 fun WatchlistScreen(
@@ -29,7 +30,7 @@ fun WatchlistScreen(
 
         MovieList(
             modifier = Modifier.padding(innerPadding),
-            movies = getMovies(),
+            movies = moviesViewModel.favoriteMovies,
             navController = navController,
             viewModel = moviesViewModel
         )

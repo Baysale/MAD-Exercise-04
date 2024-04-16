@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -14,6 +15,7 @@ import com.example.movieappmad24.models.getMovies
 import com.example.movieappmad24.viewmodels.MoviesViewModel
 import com.example.movieappmad24.widgets.HorizontalScrollableImageView
 import com.example.movieappmad24.widgets.MovieRow
+import com.example.movieappmad24.widgets.PlayerManager
 import com.example.movieappmad24.widgets.SimpleTopAppBar
 
 @Composable
@@ -39,8 +41,16 @@ fun DetailScreen(
             }
         ){ innerPadding ->
             Column {
-                MovieRow(modifier = Modifier.padding(innerPadding), movie = movie)
+                MovieRow(
+                    modifier = Modifier.padding(innerPadding),
+                    movie = movie,
+                    onFavoriteClick = { movieId ->
+                        moviesViewModel.toggleFavoriteMovie(movieId)
+                    }
+                )
                 HorizontalScrollableImageView(movie = movie)
+                Text(text = "Movie trailer")
+                PlayerManager(trailer = movie.trailer)
             }
         }
     }
